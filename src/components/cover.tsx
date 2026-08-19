@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useInView, useScramble } from "../lib/hooks";
 import { TICKER_ITEMS, TOTAL_BUDGET } from "../lib/data";
 import { Diamond, OrnamentRule } from "./ui";
@@ -136,6 +137,9 @@ export function Cover() {
             <Diamond className="h-1.5 w-1.5 text-gold" />
             <span>@meliora_medical_almaty</span>
           </p>
+
+          <DownloadButton on={on} />
+
           <p
             className={`rv flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-dark ${on ? "on" : ""}`}
             style={{ transitionDelay: "800ms" }}
@@ -146,6 +150,67 @@ export function Cover() {
         </div>
       </div>
     </section>
+  );
+}
+
+type DlState = "idle" | "busy" | "done";
+
+function DownloadButton({ on }: { on: boolean }) {
+  const [state, setState] = useState<DlState>("idle");
+
+  const run = async () => {
+    if (state === "busy") return;
+    setState("busy");
+    try {
+      const { downloadGuideDocx } = await import("../lib/docx");
+      await downloadGuideDocx();
+      setState("done");
+      window.setTimeout(() => setState("idle"), 2600);
+    } catch (e) {
+      console.error("Не удалось собрать .docx", e);
+      setState("idle");
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={run}
+      disabled={state === "busy"}
+      className={`rv group inline-flex cursor-pointer items-center gap-3 border px-5 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 active:translate-y-px disabled:cursor-wait sm:text-[11px] ${
+        on ? "on" : ""
+      } ${
+        state === "done"
+          ? "border-gold-bright/80 bg-gold-bright/10 text-gold-bright"
+          : "border-gold-bright/70 bg-gold text-ink-deep hover:bg-gold-bright"
+      }`}
+      style={{ transitionDelay: "760ms" }}
+    >
+      <svg
+        width="13"
+        height="13"
+        viewBox="0 0 14 14"
+        fill="none"
+        aria-hidden="true"
+        className="shrink-0"
+      >
+        {state === "done" ? (
+          <path d="M2 7.5 5.5 11 12 3.5" stroke="currentColor" strokeWidth="1.8" />
+        ) : (
+          <path
+            d="M7 1v8m0 0L3.5 5.5M7 9l3.5-3.5M1.5 12.5h11"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="square"
+          />
+        )}
+      </svg>
+      {state === "busy"
+        ? "Готовим файл…"
+        : state === "done"
+          ? "Скачано ✓"
+          : "Скачать регламент · .docx"}
+    </button>
   );
 }
 

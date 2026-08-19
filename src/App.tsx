@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { CHAPTERS, TOTAL_BUDGET } from "./lib/data";
 import type { Chapter } from "./lib/data";
 import {
@@ -254,6 +254,56 @@ function ChapterSection({ ch }: { ch: Chapter }) {
   );
 }
 
+/* ---------- скачивание .docx ---------- */
+function FooterDownload() {
+  const [state, setState] = useState<"idle" | "busy" | "done">("idle");
+
+  const run = async () => {
+    if (state === "busy") return;
+    setState("busy");
+    try {
+      const { downloadGuideDocx } = await import("./lib/docx");
+      await downloadGuideDocx();
+      setState("done");
+      window.setTimeout(() => setState("idle"), 2600);
+    } catch (e) {
+      console.error("Не удалось собрать .docx", e);
+      setState("idle");
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={run}
+      disabled={state === "busy"}
+      className={`inline-flex shrink-0 cursor-pointer items-center gap-3 border px-6 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 active:translate-y-px disabled:cursor-wait ${
+        state === "done"
+          ? "border-gold-bright/80 bg-gold-bright/10 text-gold-bright"
+          : "border-gold-bright/70 bg-gold text-ink-deep hover:bg-gold-bright"
+      }`}
+    >
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        {state === "done" ? (
+          <path d="M2 7.5 5.5 11 12 3.5" stroke="currentColor" strokeWidth="1.8" />
+        ) : (
+          <path
+            d="M7 1v8m0 0L3.5 5.5M7 9l3.5-3.5M1.5 12.5h11"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="square"
+          />
+        )}
+      </svg>
+      {state === "busy"
+        ? "Готовим файл…"
+        : state === "done"
+          ? "Скачано ✓"
+          : "Скачать .docx"}
+    </button>
+  );
+}
+
 /* ---------- финал ---------- */
 function Footer() {
   return (
@@ -308,6 +358,23 @@ function Footer() {
               </dd>
             </div>
           </dl>
+        </div>
+
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 border border-hairline-dark bg-ink-soft/50 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
+          <div>
+            <p className="font-display text-xl font-semibold tracking-wide text-paper-bright">
+              Нужен в Word — для печати и рассылки?
+            </p>
+            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-dark">
+              Тот же регламент — обложка, таблицы, нумерация шагов и футер с
+              номерами страниц — собирается в{" "}
+              <span className="font-mono text-[12px] text-gold-bright">
+                Meliora_Технический_запуск_рекламы.docx
+              </span>{" "}
+              прямо в браузере, без сервера.
+            </p>
+          </div>
+          <FooterDownload />
         </div>
 
         <OrnamentRule dark className="mt-12" />
