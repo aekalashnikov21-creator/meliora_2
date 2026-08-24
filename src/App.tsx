@@ -19,9 +19,10 @@ import {
 } from "./components/ui";
 import {
   CampaignLedger,
-  Checklist,
   KpiBoard,
+  LaunchPlan,
   LevelsMatryoshka,
+  MarkedList,
 } from "./components/features";
 
 /* ---------- оглавление: левый корешок (desktop) ---------- */
@@ -36,7 +37,7 @@ function Spine({ active }: { active: string }) {
           </span>
         </p>
         <p className="mt-2.5 font-mono text-[9px] uppercase tracking-[0.24em] text-muted-dark">
-          Техзапуск рекламы · Instagram
+          Техзапуск рекламы · Instagram + ГЕО
         </p>
       </a>
 
@@ -112,7 +113,7 @@ function MobileNav({ active }: { active: string }) {
           {TOTAL_BUDGET.toLocaleString("ru-RU")} ₸ / день
         </span>
       </div>
-      <nav className="overflow-x-auto px-4 pb-2.5 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <nav className="touch-scroll overflow-x-auto px-4 pb-2.5 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max gap-1.5">
           {CHAPTERS.map((c) => {
             const isActive = active === c.id;
@@ -224,8 +225,10 @@ function Blocks({ ch }: { ch: Chapter }) {
             return <CampaignLedger key={i} />;
           case "kpi":
             return <KpiBoard key={i} />;
-          case "checklist":
-            return <Checklist key={i} />;
+          case "list":
+            return <MarkedList key={i} items={b.items} />;
+          case "tracks":
+            return <LaunchPlan key={i} />;
           default:
             return null;
         }
@@ -238,7 +241,7 @@ function ChapterSection({ ch }: { ch: Chapter }) {
   return (
     <section
       id={ch.id}
-      className={`relative scroll-mt-24 border-b lg:scroll-mt-0 ${
+      className={`relative overflow-hidden scroll-mt-24 border-b lg:scroll-mt-0 ${
         ch.dark
           ? "grid-dark border-hairline-dark bg-ink text-paper"
           : "border-hairline bg-paper"
@@ -321,9 +324,9 @@ function Footer() {
               Beauty &amp; Spa · Medical
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-dark">
-              Технический запуск рекламы в Instagram — внутренний регламент
-              команды: кабинет, четыре кампании, лид-формы, нормативы метрик
-              и чек-лист запуска.
+              Технический запуск рекламы в Instagram и геосервисах —
+              внутренний регламент команды: кабинет, четыре кампании,
+              лид-формы, Яндекс Карты / Google Maps / 2ГИС и нормативы метрик.
             </p>
             <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] tracking-[0.12em] text-gold-bright">
               <span>@meliora_almaty</span>
@@ -354,7 +357,7 @@ function Footer() {
             <div>
               <dt>Разделы</dt>
               <dd className="mt-1.5 text-sm normal-case tracking-normal text-paper/85">
-                08 · части А–Е
+                09 · два трека
               </dd>
             </div>
           </dl>
@@ -363,18 +366,36 @@ function Footer() {
         <div className="mt-12 flex flex-col items-start justify-between gap-6 border border-hairline-dark bg-ink-soft/50 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
           <div>
             <p className="font-display text-xl font-semibold tracking-wide text-paper-bright">
-              Нужен в Word — для печати и рассылки?
+              Регламент с собой — Word или один HTML-файл
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-dark">
-              Тот же регламент — обложка, таблицы, нумерация шагов и футер с
-              номерами страниц — собирается в{" "}
-              <span className="font-mono text-[12px] text-gold-bright">
-                Meliora_Технический_запуск_рекламы.docx
-              </span>{" "}
-              прямо в браузере, без сервера.
+              Два автономных формата:{" "}
+              <span className="font-mono text-[12px] text-gold-bright">.docx</span>{" "}
+              собирается прямо в браузере (обложка, таблицы, нумерация шагов,
+              футер со страницами),{" "}
+              <span className="font-mono text-[12px] text-gold-bright">.html</span>{" "}
+              — один самодостаточный файл: открывается без интернета и
+              печатается в PDF через Ctrl+P.
             </p>
           </div>
-          <FooterDownload />
+          <div className="flex flex-wrap items-center gap-3">
+            <FooterDownload />
+            <a
+              href="./meliora-guide.html"
+              download="Meliora_Технический_запуск_рекламы.html"
+              className="inline-flex shrink-0 items-center gap-3 border border-hairline-dark px-6 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-paper transition-all duration-300 hover:border-gold-bright hover:bg-gold-bright/10 hover:text-gold-bright active:translate-y-px"
+            >
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path
+                  d="M7 1v8m0 0L3.5 5.5M7 9l3.5-3.5M1.5 12.5h11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="square"
+                />
+              </svg>
+              HTML · один файл
+            </a>
+          </div>
         </div>
 
         <OrnamentRule dark className="mt-12" />

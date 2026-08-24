@@ -194,7 +194,7 @@ export function DataTable({
           {caption}
         </p>
       ) : null}
-      <div className="overflow-x-auto border border-hairline bg-paper-bright shadow-[0_18px_40px_-28px_rgba(31,27,22,0.45)]">
+      <div className="touch-scroll overflow-x-auto border border-hairline bg-paper-bright shadow-[0_18px_40px_-28px_rgba(31,27,22,0.45)]">
         <table className="w-full min-w-[560px] border-collapse text-left">
           <thead>
             <tr className="bg-gold">

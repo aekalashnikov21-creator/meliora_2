@@ -26,17 +26,27 @@ export function useInView<T extends HTMLElement>(threshold = 0.14) {
     }
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setOn(true);
-          io.disconnect();
-        }
-      },
-      { threshold, rootMargin: "0px 0px -7% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    /* старые браузеры / WebView без IntersectionObserver —
+       показываем контент без анимации, ничего не должно пропасть */
+    if (typeof IntersectionObserver === "undefined") {
+      setOn(true);
+      return;
+    }
+    try {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            setOn(true);
+            io.disconnect();
+          }
+        },
+        { threshold, rootMargin: "0px 0px -5% 0px" }
+      );
+      io.observe(el);
+      return () => io.disconnect();
+    } catch {
+      setOn(true);
+    }
   }, [reduced, threshold]);
   return [ref, on] as const;
 }

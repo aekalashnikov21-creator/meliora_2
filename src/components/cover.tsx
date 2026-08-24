@@ -19,7 +19,8 @@ export function Cover() {
   return (
     <section
       id="cover"
-      className="glow-gold grid-dark relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink-deep px-6 pb-6 pt-[5.75rem] text-paper sm:px-10 lg:px-14 lg:pt-7"
+      style={{ minHeight: "100svh" }}
+      className="glow-gold grid-dark relative flex min-h-screen flex-col justify-between overflow-hidden bg-ink-deep px-5 pb-6 pt-[5.75rem] text-paper sm:min-h-[100svh] sm:px-10 lg:px-14 lg:pt-7"
     >
       {/* верхняя служебная строка */}
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline-dark/80 pb-5">
@@ -38,7 +39,7 @@ export function Cover() {
           <div>
             <h1
               aria-label={WORDMARK}
-              className="font-display text-[clamp(3.2rem,11.5vw,8.5rem)] font-semibold leading-[0.95] tracking-[0.24em] text-paper-bright"
+              className="font-display text-[clamp(2.5rem,12vw,8.5rem)] font-semibold leading-[0.95] tracking-[0.16em] text-paper-bright sm:tracking-[0.24em]"
             >
               {WORDMARK.split("").map((ch, i) => (
                 <span
@@ -87,8 +88,8 @@ export function Cover() {
                 className={`rv-line ${on ? "on" : ""}`}
                 style={{ transitionDelay: "430ms" }}
               >
-                рекламы{" "}
-                <em className="italic text-gold-bright">в Instagram</em>
+                рекламы:{" "}
+                <em className="italic text-gold-bright">Instagram + ГЕО</em>
               </span>
             </span>
           </h2>
@@ -97,8 +98,8 @@ export function Cover() {
             style={{ transitionDelay: "560ms" }}
           >
             Пошаговая настройка кабинета, кампаний, групп и объявлений —
-            простыми словами, для всей команды. Восемь разделов: от личного
-            Фейсбука до первой чистки объявлений.
+            простыми словами, для всей команды. Два трека: Instagram и
+            геосервисы — Яндекс Карты, Google Maps, 2ГИС.
           </p>
         </div>
       </div>

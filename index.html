@@ -2,9 +2,10 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Meliora Beauty & Spa · Medical — технический запуск рекламы в Instagram: пошаговый регламент для команды. Кабинет, кампании, группы, объявления, KPI и чек-лист." />
-    <title>MELIORA — Технический запуск рекламы в Instagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#14110d" />
+    <meta name="description" content="Meliora Beauty & Spa · Medical — технический запуск рекламы в Instagram и геосервисах (Яндекс Карты, Google Maps, 2ГИС): пошаговый регламент для команды. Кабинет, кампании, группы, объявления, KPI." />
+    <title>MELIORA — Технический запуск рекламы: Instagram + ГЕО</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,10 +14,36 @@
     />
     <style>
       html, body { margin: 0; padding: 0; background-color: #14110d; }
+      #boot {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 18px; min-height: 100vh; padding: 24px; text-align: center;
+        font-family: Georgia, "Times New Roman", serif; color: #faf6ec;
+      }
+      #boot strong { font-size: 26px; font-weight: 600; letter-spacing: 0.3em; }
+      #boot span {
+        font-family: Consolas, Menlo, monospace; font-size: 11px; letter-spacing: 0.24em;
+        text-transform: uppercase; color: #c9a869; animation: bootPulse 1.4s ease-in-out infinite;
+      }
+      @keyframes bootPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="boot">
+        <strong>MELIORA</strong>
+        <span>загружаем регламент…</span>
+      </div>
+    </div>
+    <noscript>
+      <div style="display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:Georgia,serif;color:#faf6ec;background:#14110d;">
+        <p style="max-width:420px;line-height:1.6;">
+          Для интерактивной версии нужен JavaScript.<br />
+          Полная автономная копия регламента — файл
+          <a href="./meliora-guide.html" style="color:#c9a869;">meliora-guide.html</a> —
+          работает и без скриптов.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

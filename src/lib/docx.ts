@@ -18,9 +18,9 @@ import {
 import {
   CAMPAIGNS,
   CHAPTERS,
-  CHECKLIST_ITEMS,
   KPI_ROWS,
   LEVELS,
+  TRACKS,
 } from "./data";
 import type { Block, Chapter, StepItem } from "./data";
 
@@ -298,8 +298,28 @@ function renderBlock(
         ),
         spacer(),
       ];
-    case "checklist":
-      return CHECKLIST_ITEMS.map((text, i) => step(i + 1, "", text));
+    case "list":
+      return block.items.map(
+        (text) =>
+          new Paragraph({
+            indent: { left: tw(14) },
+            spacing: { after: tw(5) },
+            children: [
+              new TextRun({ text: "◆  ", color: GOLD, bold: true }),
+              new TextRun({ text }),
+            ],
+          })
+      );
+    case "tracks": {
+      const out: (Paragraph | Table)[] = [];
+      for (const track of TRACKS) {
+        out.push(h2(`${track.name} — ${track.sub}`));
+        track.phases.forEach((p, i) => {
+          out.push(step(i + 1, `${p.badge} · ${p.title}.`, p.text));
+        });
+      }
+      return out;
+    }
     default:
       return [];
   }
@@ -345,11 +365,11 @@ function coverPage(): Paragraph[] {
     new Paragraph({ children: [] }),
     cover("MELIORA", 30, DARK, 4, { bold: true, ls: 30 }),
     cover("BEAUTY & SPA  ·  MEDICAL", 11, GOLD, 26, { ls: 20 }),
-    cover("Технический запуск рекламы в Instagram", 17, DARK, 6, {
+    cover("Технический запуск рекламы: Instagram + ГЕО", 17, DARK, 6, {
       bold: true,
     }),
-    cover("Пошаговая настройка кабинета, кампаний, групп и объявлений", 11, MUTED, 2),
-    cover("простыми словами — для всей команды", 11, MUTED, 26),
+    cover("Кабинет, кампании, объявления — и геосервисы:", 11, MUTED, 2),
+    cover("Яндекс Карты · Google Maps · 2ГИС — простыми словами, для всей команды", 11, MUTED, 26),
     cover("@meliora_almaty  ·  @meliora_medical_almaty", 11, GOLD, 4, { ls: 10 }),
     cover("Август 2026 · Алматы", 10, MUTED, 0),
     new Paragraph({ children: [new PageBreak()] }),
