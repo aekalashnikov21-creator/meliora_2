@@ -363,18 +363,36 @@ function Footer() {
         <div className="mt-12 flex flex-col items-start justify-between gap-6 border border-hairline-dark bg-ink-soft/50 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
           <div>
             <p className="font-display text-xl font-semibold tracking-wide text-paper-bright">
-              Нужен в Word — для печати и рассылки?
+              Регламент с собой — Word или один HTML-файл
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-dark">
-              Тот же регламент — обложка, таблицы, нумерация шагов и футер с
-              номерами страниц — собирается в{" "}
-              <span className="font-mono text-[12px] text-gold-bright">
-                Meliora_Технический_запуск_рекламы.docx
-              </span>{" "}
-              прямо в браузере, без сервера.
+              Два автономных формата:{" "}
+              <span className="font-mono text-[12px] text-gold-bright">.docx</span>{" "}
+              собирается прямо в браузере (обложка, таблицы, нумерация шагов,
+              футер со страницами),{" "}
+              <span className="font-mono text-[12px] text-gold-bright">.html</span>{" "}
+              — один самодостаточный файл: открывается без интернета и
+              печатается в PDF через Ctrl+P.
             </p>
           </div>
-          <FooterDownload />
+          <div className="flex flex-wrap items-center gap-3">
+            <FooterDownload />
+            <a
+              href="./meliora-guide.html"
+              download="Meliora_Технический_запуск_рекламы.html"
+              className="inline-flex shrink-0 items-center gap-3 border border-hairline-dark px-6 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-paper transition-all duration-300 hover:border-gold-bright hover:bg-gold-bright/10 hover:text-gold-bright active:translate-y-px"
+            >
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path
+                  d="M7 1v8m0 0L3.5 5.5M7 9l3.5-3.5M1.5 12.5h11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="square"
+                />
+              </svg>
+              HTML · один файл
+            </a>
+          </div>
         </div>
 
         <OrnamentRule dark className="mt-12" />
