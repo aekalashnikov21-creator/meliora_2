@@ -23,6 +23,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Safari / iOS: запрет самопроизвольного увеличения шрифта */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -31,6 +34,19 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* iOS / Android: убираем серую подсветку тапа */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* инерционный скролл горизонтальных лент (старые iOS) */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* единое кольцо фокуса с клавиатуры во всех браузерах */
+:focus-visible {
+  outline: 2px solid var(--color-gold-bright);
+  outline-offset: 2px;
 }
 
 ::selection {

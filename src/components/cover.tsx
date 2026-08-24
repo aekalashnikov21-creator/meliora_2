@@ -19,7 +19,8 @@ export function Cover() {
   return (
     <section
       id="cover"
-      className="glow-gold grid-dark relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink-deep px-6 pb-6 pt-[5.75rem] text-paper sm:px-10 lg:px-14 lg:pt-7"
+      style={{ minHeight: "100svh" }}
+      className="glow-gold grid-dark relative flex min-h-screen flex-col justify-between overflow-hidden bg-ink-deep px-5 pb-6 pt-[5.75rem] text-paper sm:min-h-[100svh] sm:px-10 lg:px-14 lg:pt-7"
     >
       {/* верхняя служебная строка */}
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline-dark/80 pb-5">

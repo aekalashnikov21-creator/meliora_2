@@ -113,7 +113,7 @@ function MobileNav({ active }: { active: string }) {
           {TOTAL_BUDGET.toLocaleString("ru-RU")} ₸ / день
         </span>
       </div>
-      <nav className="overflow-x-auto px-4 pb-2.5 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <nav className="touch-scroll overflow-x-auto px-4 pb-2.5 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max gap-1.5">
           {CHAPTERS.map((c) => {
             const isActive = active === c.id;
