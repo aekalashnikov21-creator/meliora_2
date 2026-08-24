@@ -58,7 +58,7 @@ a{color:inherit}
 .c-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line-d);padding-bottom:20px;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,236,223,.5)}
 .c-top .meta{color:var(--gold-2);letter-spacing:.2em}
-.wordmark{font-family:var(--disp);font-weight:600;font-size:clamp(52px,11vw,124px);line-height:.95;letter-spacing:.24em;color:#F7F2E7;margin-top:52px}
+.wordmark{font-family:var(--disp);font-weight:600;font-size:clamp(40px,12vw,124px);line-height:.95;letter-spacing:.24em;color:#F7F2E7;margin-top:52px}
 .wordmark span{display:inline-block;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(.45em)}to{opacity:1;transform:none}}
 .rule{display:flex;align-items:center;gap:12px;margin:26px 0 18px;max-width:420px}
@@ -178,9 +178,10 @@ section.dark .tbl td{border-color:var(--line-d);color:rgba(242,236,223,.85)}
 section.dark .tbl tr:nth-child(even) td{background:rgba(242,236,223,.05)}
 section.dark .tbl td:first-child{color:#F7F2E7}
 
-/* появление при скролле */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.on{opacity:1;transform:none}
+/* появление при скролле — только когда JS и анимации доступны;
+   без класса .js на <html> весь контент виден сразу */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.on{opacity:1;transform:none}
 
 /* футер */
 footer{background:var(--ink-3);color:var(--paper);padding:64px 0 40px}
@@ -586,6 +587,10 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 (function(){
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
+  /* анимации — только надстройка: класс .js включает скрытие .rv.
+     Если JS отключен, браузер старый или motion reduce — контент виден сразу */
+  if (!reduced && hasIO) document.documentElement.classList.add("js");
 
   /* прогресс чтения */
   var bar = document.getElementById("pbar");

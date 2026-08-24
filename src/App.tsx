@@ -241,7 +241,7 @@ function ChapterSection({ ch }: { ch: Chapter }) {
   return (
     <section
       id={ch.id}
-      className={`relative scroll-mt-24 border-b lg:scroll-mt-0 ${
+      className={`relative overflow-hidden scroll-mt-24 border-b lg:scroll-mt-0 ${
         ch.dark
           ? "grid-dark border-hairline-dark bg-ink text-paper"
           : "border-hairline bg-paper"

@@ -39,7 +39,7 @@ export function Cover() {
           <div>
             <h1
               aria-label={WORDMARK}
-              className="font-display text-[clamp(3.2rem,11.5vw,8.5rem)] font-semibold leading-[0.95] tracking-[0.24em] text-paper-bright"
+              className="font-display text-[clamp(2.5rem,12vw,8.5rem)] font-semibold leading-[0.95] tracking-[0.16em] text-paper-bright sm:tracking-[0.24em]"
             >
               {WORDMARK.split("").map((ch, i) => (
                 <span
