@@ -19,9 +19,10 @@ import {
 } from "./components/ui";
 import {
   CampaignLedger,
-  Checklist,
   KpiBoard,
+  LaunchPlan,
   LevelsMatryoshka,
+  MarkedList,
 } from "./components/features";
 
 /* ---------- оглавление: левый корешок (desktop) ---------- */
@@ -36,7 +37,7 @@ function Spine({ active }: { active: string }) {
           </span>
         </p>
         <p className="mt-2.5 font-mono text-[9px] uppercase tracking-[0.24em] text-muted-dark">
-          Техзапуск рекламы · Instagram
+          Техзапуск рекламы · Instagram + ГЕО
         </p>
       </a>
 
@@ -224,8 +225,10 @@ function Blocks({ ch }: { ch: Chapter }) {
             return <CampaignLedger key={i} />;
           case "kpi":
             return <KpiBoard key={i} />;
-          case "checklist":
-            return <Checklist key={i} />;
+          case "list":
+            return <MarkedList key={i} items={b.items} />;
+          case "tracks":
+            return <LaunchPlan key={i} />;
           default:
             return null;
         }
@@ -321,9 +324,9 @@ function Footer() {
               Beauty &amp; Spa · Medical
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-dark">
-              Технический запуск рекламы в Instagram — внутренний регламент
-              команды: кабинет, четыре кампании, лид-формы, нормативы метрик
-              и чек-лист запуска.
+              Технический запуск рекламы в Instagram и геосервисах —
+              внутренний регламент команды: кабинет, четыре кампании,
+              лид-формы, Яндекс Карты / Google Maps / 2ГИС и нормативы метрик.
             </p>
             <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] tracking-[0.12em] text-gold-bright">
               <span>@meliora_almaty</span>
@@ -354,7 +357,7 @@ function Footer() {
             <div>
               <dt>Разделы</dt>
               <dd className="mt-1.5 text-sm normal-case tracking-normal text-paper/85">
-                08 · части А–Е
+                09 · два трека
               </dd>
             </div>
           </dl>

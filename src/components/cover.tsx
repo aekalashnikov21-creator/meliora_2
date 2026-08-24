@@ -87,8 +87,8 @@ export function Cover() {
                 className={`rv-line ${on ? "on" : ""}`}
                 style={{ transitionDelay: "430ms" }}
               >
-                рекламы{" "}
-                <em className="italic text-gold-bright">в Instagram</em>
+                рекламы:{" "}
+                <em className="italic text-gold-bright">Instagram + ГЕО</em>
               </span>
             </span>
           </h2>
@@ -97,8 +97,8 @@ export function Cover() {
             style={{ transitionDelay: "560ms" }}
           >
             Пошаговая настройка кабинета, кампаний, групп и объявлений —
-            простыми словами, для всей команды. Восемь разделов: от личного
-            Фейсбука до первой чистки объявлений.
+            простыми словами, для всей команды. Два трека: Instagram и
+            геосервисы — Яндекс Карты, Google Maps, 2ГИС.
           </p>
         </div>
       </div>

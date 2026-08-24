@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- ============================================================
-  MELIORA · Технический запуск рекламы в Instagram
+  MELIORA · Технический запуск рекламы: Instagram + ГЕО сервисы
   Самодостаточный HTML-файл: стили и скрипты внутри.
   Сохраните файл и откройте в любом браузере — интернет нужен
   только для шрифтов (без него подставятся системные).
@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MELIORA — Технический запуск рекламы в Instagram</title>
+<title>MELIORA — Технический запуск рекламы: Instagram + ГЕО сервисы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -35,8 +35,7 @@ a{color:inherit}
 #pbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold-2);z-index:90}
 .top{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;gap:18px;
   padding:14px 24px;background:rgba(23,20,16,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
-.top .brand{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.3em;color:var(--paper-2)}
-.top .brand b{color:var(--gold-2)}
+.top .brand{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.3em;color:#F7F2E7}
 .top nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
 .top nav::-webkit-scrollbar{display:none}
 .top nav a{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
@@ -47,8 +46,6 @@ a{color:inherit}
 /* ---------- обложка ---------- */
 #cover{position:relative;background:radial-gradient(1100px 600px at 78% -10%,rgba(198,169,107,.14),transparent 60%),var(--ink-3);
   color:var(--paper);padding:118px 0 56px;overflow:hidden}
-#cover::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 .c-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line-d);padding-bottom:20px;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,236,223,.5)}
 .c-top .meta{color:var(--gold-2);letter-spacing:.2em}
@@ -61,7 +58,7 @@ a{color:inherit}
 .c-sub{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2)}
 .c-title{font-family:var(--disp);font-weight:500;font-size:clamp(34px,6vw,58px);line-height:1.05;color:#F7F2E7;margin-top:38px;max-width:760px}
 .c-title em{font-style:italic;color:var(--gold-2)}
-.c-lead{max-width:620px;margin-top:22px;color:rgba(242,236,223,.62)}
+.c-lead{max-width:640px;margin-top:22px;color:rgba(242,236,223,.62)}
 .passport{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line-d);margin-top:56px}
 .passport div{padding:18px 22px;border-left:1px solid var(--line-d);transition:background .3s}
 .passport div:first-child{border-left:0}
@@ -78,7 +75,7 @@ a{color:inherit}
 
 /* ---------- бегущая строка ---------- */
 .ticker{overflow:hidden;background:var(--gold);color:#F7F2E7;border-block:1px solid rgba(23,20,16,.35)}
-.ticker-track{display:flex;width:max-content;animation:mq 36s linear infinite}
+.ticker-track{display:flex;width:max-content;animation:mq 40s linear infinite}
 .ticker:hover .ticker-track{animation-play-state:paused}
 .ticker span{display:flex;align-items:center;white-space:nowrap;padding:11px 22px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
 .ticker span::after{content:"◆";font-size:8px;margin-left:44px;opacity:.65}
@@ -86,13 +83,14 @@ a{color:inherit}
 
 /* ---------- содержание ---------- */
 .toc{background:var(--paper-2);border-bottom:1px solid var(--line)}
-.toc .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0 24px}
-.toc a{display:flex;gap:14px;align-items:baseline;padding:20px 18px;border-left:1px solid var(--line);text-decoration:none;transition:.25s}
-.toc a:first-child{border-left:0}
+.toc .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 24px}
+.toc a{display:flex;gap:14px;align-items:baseline;padding:18px;border-left:1px solid var(--line);border-top:1px solid var(--line);text-decoration:none;transition:.25s}
 .toc a:hover{background:rgba(139,111,71,.07)}
-.toc b{font-family:var(--disp);font-size:22px;font-weight:600;color:var(--gold);transition:.25s}
+.toc a b{font-family:var(--disp);font-size:22px;font-weight:600;color:var(--gold);transition:.25s}
 .toc a:hover b{transform:translateY(-2px)}
-.toc span{font-size:13.5px;font-weight:600;line-height:1.35;color:var(--ink)}
+.toc a span{font-size:13.5px;font-weight:600;line-height:1.35;color:var(--ink)}
+.toc a:nth-child(-n+3){border-top:0}
+.toc a:nth-child(3n+1){border-left:0}
 
 /* ---------- секции ---------- */
 section.ch{padding:84px 0;border-top:1px solid var(--line)}
@@ -101,8 +99,28 @@ section.ch.alt{background:var(--paper-2)}
 .kicker i{width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
 h2.ch-title{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.06;margin:16px 0 22px;letter-spacing:.01em}
 h2.ch-title em{font-style:italic;color:var(--gold)}
+h2.ch-title .note-inline{font-size:.42em;letter-spacing:.12em;font-family:var(--mono);font-weight:500;color:var(--muted);text-transform:uppercase}
 .lead{max-width:660px;color:rgba(31,27,22,.72)}
 h3.sub{font-family:var(--disp);font-style:italic;font-weight:600;font-size:22px;margin:40px 0 16px;padding-left:16px;border-left:3px solid var(--gold)}
+
+/* план действий: два трека */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:36px 0}
+.track{border:1px solid var(--line);background:var(--white);padding:28px;transition:.4s}
+.track:hover{border-color:rgba(139,111,71,.55);box-shadow:0 28px 70px -44px rgba(139,111,71,.65)}
+.track .t-name{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.track .t-sub{margin-top:8px;font-family:var(--disp);font-size:23px;font-weight:600;line-height:1.25}
+.phases{list-style:none;margin-top:28px;position:relative}
+.phases::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.phases li{position:relative;padding:0 0 26px 36px}
+.phases li:last-child{padding-bottom:0}
+.phases li::before{content:"";position:absolute;left:0;top:6px;width:11px;height:11px;transform:rotate(45deg);
+  border:1.5px solid var(--gold);background:var(--paper);transition:.3s}
+.track:hover .phases li::before{background:rgba(139,111,71,.25)}
+.phases .badge{display:inline-block;border:1px solid rgba(139,111,71,.4);background:#F5F0E4;color:var(--gold);
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;margin-right:10px}
+.phases .p-title{font-weight:800;font-size:15px}
+.phases p{margin-top:8px;font-size:14px;line-height:1.6;color:rgba(31,27,22,.7)}
+.phases .ref{margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
 /* шаги */
 ol.steps{list-style:none;counter-reset:st;margin:26px 0;max-width:780px}
@@ -113,6 +131,13 @@ ol.steps li::before{counter-increment:st;content:counter(st,decimal-leading-zero
 ol.steps li::after{content:"";position:absolute;left:30px;top:26px;bottom:2px;width:1px;background:var(--line)}
 ol.steps li:last-child::after{display:none}
 ol.steps b{font-weight:800}
+
+/* маркерный список */
+.marked{list-style:none;margin:28px 0;max-width:780px;border:1px solid var(--line);background:var(--white)}
+.marked li{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border-top:1px solid var(--line);font-size:14.5px;transition:background .25s}
+.marked li:first-child{border-top:0}
+.marked li:hover{background:rgba(139,111,71,.06)}
+.marked li::before{content:"◆";color:var(--gold);font-size:10px;line-height:2}
 
 /* таблицы */
 .tbl{margin:30px 0;border:1px solid var(--line);background:var(--white);overflow-x:auto}
@@ -144,30 +169,6 @@ section.dark .tbl td{border-color:var(--line-d);color:rgba(242,236,223,.85)}
 section.dark .tbl tr:nth-child(even) td{background:rgba(242,236,223,.05)}
 section.dark .tbl td:first-child{color:#F7F2E7}
 
-/* чек-лист */
-.check{list-style:none;margin:28px 0;max-width:780px;border:1px solid var(--line);background:var(--white)}
-.check li{display:flex;gap:16px;align-items:flex-start;padding:15px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .25s}
-.check li:first-child{border-top:0}
-.check li:hover{background:rgba(139,111,71,.06)}
-.check .box{flex-shrink:0;width:21px;height:21px;margin-top:2px;border:1.5px solid var(--gold);display:grid;place-items:center;transition:.25s}
-.check .box svg{opacity:0;transform:scale(.5);transition:.25s}
-.check li.done{background:rgba(139,111,71,.08)}
-.check li.done .box{background:var(--gold)}
-.check li.done .box svg{opacity:1;transform:scale(1)}
-.check li.done p{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(139,111,71,.6)}
-.check p{font-size:14.5px}
-.check-bar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;max-width:780px;margin-top:14px}
-.check-bar .track{flex:1;min-width:160px;height:6px;background:rgba(31,27,22,.12)}
-.check-bar .track i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s cubic-bezier(.2,.7,.2,1)}
-.check-bar small{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
-.check-bar button{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:none;border:1px solid var(--line);padding:7px 14px;cursor:pointer;color:var(--muted);transition:.25s}
-.check-bar button:hover{border-color:var(--gold);color:var(--gold)}
-.stamp{display:none;margin:26px 0 0;max-width:780px;padding:20px 24px;border:2px solid var(--gold);text-align:center;
-  font-family:var(--disp);font-style:italic;font-weight:600;font-size:24px;color:var(--gold);transform:rotate(-1.5deg);
-  animation:stampIn .5s cubic-bezier(.2,.9,.3,1.4) both}
-.stamp.show{display:block}
-@keyframes stampIn{from{opacity:0;transform:rotate(-6deg) scale(1.25)}to{opacity:1;transform:rotate(-1.5deg) scale(1)}}
-
 /* появление при скролле */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -175,7 +176,6 @@ section.dark .tbl td:first-child{color:#F7F2E7}
 /* футер */
 footer{background:var(--ink-3);color:var(--paper);padding:64px 0 40px}
 footer .brand{font-family:var(--disp);font-weight:600;font-size:30px;letter-spacing:.3em;color:#F7F2E7}
-footer .brand b{color:var(--gold-2)}
 footer .sub{margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2)}
 footer .acc{margin-top:22px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--gold-2)}
 footer .meta{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,236,223,.45)}
@@ -187,10 +187,11 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
   .passport{grid-template-columns:repeat(2,1fr)}
   .passport div:nth-child(3){border-left:0}
   .passport div:nth-child(n+3){border-top:1px solid var(--line-d)}
-  .toc .wrap{grid-template-columns:repeat(2,1fr)}
-  .toc a{border-top:1px solid var(--line)}
-  .toc a:nth-child(-n+2){border-top:0}
-  .toc a:nth-child(odd){border-left:0}
+  .toc .wrap{grid-template-columns:1fr 1fr}
+  .toc a{border-left:1px solid var(--line)!important;border-top:1px solid var(--line)!important}
+  .toc a:nth-child(-n+2){border-top:0!important}
+  .toc a:nth-child(odd){border-left:0!important}
+  .tracks{grid-template-columns:1fr}
   footer .meta{grid-template-columns:repeat(2,1fr)}
   .top nav{display:none}
 }
@@ -200,10 +201,9 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
   .wordmark span{animation:none}
   .ticker-track{animation:none}
   .c-bottom .hint i{animation:none}
-  .stamp{animation:none}
 }
 @media print{
-  .top,#pbar,.ticker,.check-bar,footer .fin{display:none!important}
+  .top,#pbar,.ticker{display:none!important}
   body{background:#fff}
   section.ch{padding:36px 0;break-inside:avoid}
   #cover{break-after:page;padding-top:60px}
@@ -215,10 +215,10 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 <div id="pbar"></div>
 
 <header class="top">
-  <span class="brand">MELI<b>O</b>RA</span>
+  <span class="brand">MELIORA</span>
   <nav id="nav">
-    <a href="#s01">01 Уровни</a><a href="#s02">02 Кабинет</a><a href="#s03">03 Beauty</a><a href="#s04">04 Med</a>
-    <a href="#s05">05 Прогрев</a><a href="#s06">06 Ретаргет</a><a href="#s07">07 Запуск</a><a href="#s08">08 Чек-лист</a>
+    <a href="#welcome">00 План</a><a href="#s01">01 Уровни</a><a href="#s02">02 Кабинет</a><a href="#s03">03 Beauty</a>
+    <a href="#s04">04 Med</a><a href="#s05">05 Прогрев</a><a href="#s06">06 Ретаргет</a><a href="#s07">07 Запуск</a><a href="#s08">08 ГЕО</a>
   </nav>
 </header>
 
@@ -234,13 +234,13 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
     </h1>
     <div class="rule"><i></i><b></b><i></i></div>
     <p class="c-sub">Beauty &amp; Spa&nbsp;&nbsp;·&nbsp;&nbsp;Medical</p>
-    <h2 class="c-title">Технический запуск рекламы <em>в Instagram</em></h2>
-    <p class="c-lead">Пошаговая настройка кабинета, кампаний, групп и объявлений — простыми словами, для всей команды. Восемь разделов: от личного Фейсбука до первой чистки объявлений.</p>
+    <h2 class="c-title">Технический запуск рекламы: <em>Instagram + ГЕО</em></h2>
+    <p class="c-lead">Пошаговая настройка кабинета, кампаний, групп и объявлений — простыми словами, для всей команды. Два трека: Instagram и геосервисы — Яндекс Карты, Google Maps, 2ГИС.</p>
     <div class="passport">
       <div><small>Аккаунты</small><strong>2 Instagram</strong></div>
       <div><small>Кампании</small><strong>4 цели</strong></div>
       <div><small>Бюджет / день</small><strong>15 000 ₸</strong></div>
-      <div><small>Фаза обучения</small><strong>72 часа</strong></div>
+      <div><small>Геосервисы</small><strong>3 площадки</strong></div>
     </div>
     <div class="c-bottom">
       <span class="acc">@meliora_almaty&nbsp;&nbsp;◆&nbsp;&nbsp;@meliora_medical_almaty</span>
@@ -252,14 +252,15 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 <!-- ================= БЕГУЩАЯ СТРОКА ================= -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>Лиды Beauty · 6 000 ₸/день</span><span>Лиды Med · 4 500 ₸/день</span><span>Прогрев · 3 000 ₸/день</span><span>Ретаргетинг · 1 500 ₸/день</span><span>Итого · 15 000 ₸/день</span><span>Фаза обучения · 72 часа</span><span>CPL Beauty · 3 000–6 000 ₸</span><span>CPL Med · 6 000–10 000 ₸</span>
-    <span>Лиды Beauty · 6 000 ₸/день</span><span>Лиды Med · 4 500 ₸/день</span><span>Прогрев · 3 000 ₸/день</span><span>Ретаргетинг · 1 500 ₸/день</span><span>Итого · 15 000 ₸/день</span><span>Фаза обучения · 72 часа</span><span>CPL Beauty · 3 000–6 000 ₸</span><span>CPL Med · 6 000–10 000 ₸</span>
+    <span>Лиды Beauty · 6 000 ₸/день</span><span>Лиды Med · 4 500 ₸/день</span><span>Прогрев · 3 000 ₸/день</span><span>Ретаргетинг · 1 500 ₸/день</span><span>Итого · 15 000 ₸/день</span><span>ГЕО · Яндекс Карты · Google Maps · 2ГИС</span><span>UTM-метки · акции · колтрекинг</span><span>Фаза обучения · 72 часа</span>
+    <span>Лиды Beauty · 6 000 ₸/день</span><span>Лиды Med · 4 500 ₸/день</span><span>Прогрев · 3 000 ₸/день</span><span>Ретаргетинг · 1 500 ₸/день</span><span>Итого · 15 000 ₸/день</span><span>ГЕО · Яндекс Карты · Google Maps · 2ГИС</span><span>UTM-метки · акции · колтрекинг</span><span>Фаза обучения · 72 часа</span>
   </div>
 </div>
 
 <!-- ================= СОДЕРЖАНИЕ ================= -->
 <nav class="toc" aria-label="Содержание">
   <div class="wrap">
+    <a href="#welcome"><b>00</b><span>План действий по запуску</span></a>
     <a href="#s01"><b>01</b><span>Как устроена реклама: три уровня</span></a>
     <a href="#s02"><b>02</b><span>Часть А. Одноразовая настройка кабинета</span></a>
     <a href="#s03"><b>03</b><span>Часть Б. Кампания «Лиды Beauty»</span></a>
@@ -267,13 +268,58 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
     <a href="#s05"><b>05</b><span>Часть Г. Кампания «Прогрев»</span></a>
     <a href="#s06"><b>06</b><span>Часть Д. Кампания «Ретаргетинг»</span></a>
     <a href="#s07"><b>07</b><span>Часть Е. Первые дни после запуска</span></a>
-    <a href="#s08"><b>08</b><span>Чек-лист нюансов новичка</span></a>
+    <a href="#s08"><b>08</b><span>Часть Ж. ГЕО сервисы: карты и навигаторы</span></a>
   </div>
 </nav>
 
 <main>
+<!-- ================= 00 · ПЛАН ДЕЙСТВИЙ ================= -->
+<section class="ch" id="welcome">
+  <div class="wrap">
+    <p class="kicker rv"><i></i>00 · Старт</p>
+    <h2 class="ch-title rv">План действий <em>по запуску</em></h2>
+    <p class="lead rv">Добро пожаловать! Этот регламент закрывает два трека одной задачи — привести Meliora клиентов из Instagram и из геосервисов. Ниже — порядок работ: что за чем следует и где в регламенте искать детали.</p>
+    <div class="tracks">
+      <div class="track rv">
+        <p class="t-name">Трек 1 · Instagram</p>
+        <p class="t-sub">Разделы 01–07 · бюджет 15 000 ₸/день</p>
+        <ol class="phases">
+          <li><span class="badge">Неделя 0</span><span class="p-title">Упаковка и кабинет</span>
+            <p>9 постов в сетке, Business Manager, рекламный аккаунт «Meliora KZT», привязка карты и доступы команде.</p>
+            <p class="ref">→ раздел 02</p></li>
+          <li><span class="badge">Неделя 1</span><span class="p-title">Запуск кампаний</span>
+            <p>Прогрев, «Лиды Beauty» и «Лиды Med». Дальше — 72 часа фазы обучения без правок.</p>
+            <p class="ref">→ разделы 03–05 · 07</p></li>
+          <li><span class="badge">Неделя 2</span><span class="p-title">Ретаргетинг и чистка</span>
+            <p>Индивидуальные аудитории по взаимодействиям за 30 дней, первая чистка по CPL и CTR.</p>
+            <p class="ref">→ разделы 06–07</p></li>
+          <li><span class="badge">Дальше</span><span class="p-title">Масштабирование</span>
+            <p>+20% бюджета на сильную группу раз в 2–3 дня, новые креативы при частоте выше 4.</p>
+            <p class="ref">→ раздел 07</p></li>
+        </ol>
+      </div>
+      <div class="track rv" style="transition-delay:.12s">
+        <p class="t-name">Трек 2 · ГЕО сервисы</p>
+        <p class="t-sub">Раздел 08 · Яндекс Карты · Google Maps · 2ГИС</p>
+        <ol class="phases">
+          <li><span class="badge">Этап 1</span><span class="p-title">Разработка</span>
+            <p>Сверка данных «О компании», utm-метки на товарах и акциях, подменный номер, маркировка рекламы, истории и кнопка действия.</p>
+            <p class="ref">→ раздел 08</p></li>
+          <li><span class="badge">Этап 2</span><span class="p-title">Модерация и запуск</span>
+            <p>Отправка материалов на модерацию, при отказе — замена. Пополнение баланса в Яндекс Картах, запуск.</p>
+            <p class="ref">→ раздел 08</p></li>
+          <li><span class="badge">Постоянно</span><span class="p-title">Оптимизация</span>
+            <p>Ежедневный мониторинг ставок и бюджета, докрутка по статистике, еженедельные отчеты и встречи-регулярки.</p>
+            <p class="ref">→ раздел 08</p></li>
+        </ol>
+      </div>
+    </div>
+    <div class="note gold rv"><b>Порядок</b><p>сначала упаковка профиля и 9 постов — потом платная реклама. В геосервисах: сначала разработка карточек — потом оптимизация.</p></div>
+  </div>
+</section>
+
 <!-- ================= 01 ================= -->
-<section class="ch" id="s01">
+<section class="ch alt" id="s01">
   <div class="wrap">
     <p class="kicker rv"><i></i>01 · Структура</p>
     <h2 class="ch-title rv">Как устроена реклама: <em>три уровня</em></h2>
@@ -291,7 +337,7 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 </section>
 
 <!-- ================= 02 ================= -->
-<section class="ch alt" id="s02">
+<section class="ch" id="s02">
   <div class="wrap">
     <p class="kicker rv"><i></i>02 · Часть А</p>
     <h2 class="ch-title rv">Одноразовая настройка <em>кабинета</em></h2>
@@ -320,7 +366,7 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 </section>
 
 <!-- ================= 03 ================= -->
-<section class="ch" id="s03">
+<section class="ch alt" id="s03">
   <div class="wrap">
     <p class="kicker rv"><i></i>03 · Часть Б</p>
     <h2 class="ch-title rv">Кампания <em>«Лиды Beauty»</em></h2>
@@ -373,7 +419,7 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 </section>
 
 <!-- ================= 04 ================= -->
-<section class="ch alt" id="s04">
+<section class="ch" id="s04">
   <div class="wrap">
     <p class="kicker rv"><i></i>04 · Часть В</p>
     <h2 class="ch-title rv">Кампания <em>«Лиды Med»</em></h2>
@@ -394,7 +440,7 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 </section>
 
 <!-- ================= 05 ================= -->
-<section class="ch" id="s05">
+<section class="ch alt" id="s05">
   <div class="wrap">
     <p class="kicker rv"><i></i>05 · Часть Г</p>
     <h2 class="ch-title rv">Кампания <em>«Прогрев»</em></h2>
@@ -408,10 +454,10 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 </section>
 
 <!-- ================= 06 ================= -->
-<section class="ch alt" id="s06">
+<section class="ch" id="s06">
   <div class="wrap">
     <p class="kicker rv"><i></i>06 · Часть Д</p>
-    <h2 class="ch-title rv">Кампания <em>«Ретаргетинг»</em> <span style="font-size:.5em;letter-spacing:.12em;font-family:var(--mono);color:var(--muted);text-transform:uppercase">включаем на 2-й неделе</span></h2>
+    <h2 class="ch-title rv">Кампания <em>«Ретаргетинг»</em> <span class="note-inline">включаем на 2-й неделе</span></h2>
     <p class="lead rv">Сначала создаем аудитории тех, кто взаимодействовал:</p>
     <ol class="steps rv">
       <li><b>Ads Manager → «Все инструменты» → «Аудитории».</b></li>
@@ -454,29 +500,40 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
   </div>
 </section>
 
-<!-- ================= 08 ================= -->
-<section class="ch" id="s08">
+<!-- ================= 08 · ГЕО СЕРВИСЫ ================= -->
+<section class="ch alt" id="s08">
   <div class="wrap">
-    <p class="kicker rv"><i></i>08 · Финал</p>
-    <h2 class="ch-title rv">Чек-лист <em>нюансов новичка</em></h2>
-    <p class="lead rv">Отмечайте по мере готовности — прогресс сохраняется в этом браузере.</p>
-    <ul class="check rv" id="check">
-      <li data-i="0"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Валюта и часовой пояс не меняются после создания аккаунта — проверяйте до создания.</p></li>
-      <li data-i="1"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Не дробите бюджет: лучше 3 группы по 4–6 тысяч, чем 10 групп по 1 000 тг.</p></li>
-      <li data-i="2"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Не смешивайте Красоту и Медицину в одной кампании.</p></li>
-      <li data-i="3"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Лид-форма не опубликуется без ссылки на политику конфиденциальности.</p></li>
-      <li data-i="4"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Тип формы «Более высокое намерение» = меньше мусора в заявках.</p></li>
-      <li data-i="5"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Первый платеж может отклониться банком — повторите.</p></li>
-      <li data-i="6"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Для медицинского аккаунта держите запасные тексты под модерацию.</p></li>
-      <li data-i="7"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1.5 6.5 4.5 9.5 10.5 2.5" stroke="#F7F2E7" stroke-width="2" fill="none"/></svg></span><p>Заявки остывают без быстрой обработки: скрипт администратора должен быть готов ДО запуска, а не после.</p></li>
+    <p class="kicker rv"><i></i>08 · Часть Ж</p>
+    <h2 class="ch-title rv">ГЕО сервисы: <em>карты и навигаторы</em> <span class="note-inline">Яндекс Карты · Google Maps · 2ГИС</span></h2>
+    <p class="lead rv">Клиенты ищут салоны и клиники на картах не реже, чем в поиске. Этот раздел — фронт работ по трем площадкам. Сначала разовая разработка кампаний, дальше — постоянная оптимизация.</p>
+
+    <h3 class="sub rv">Что входит в разработку кампаний по геосервисам</h3>
+    <ol class="steps rv">
+      <li><b>Сверка данных «О компании» Заказчика:</b> общие данные, загрузка фото и видео, проверка отзывов, блок «Товары и услуги». Актуализация информации в каждой карточке.</li>
+      <li><b>Заполнение анкеты о компании</b> в рекламной кампании. Сверка с Заказчиком.</li>
+      <li><b>Блок «Товары и услуги»</b> промечается utm-метками.</li>
+      <li><b>Создание акций</b> с добавлением utm-меток.</li>
+      <li><b>Подключение подменного номера телефона.</b></li>
+      <li><b>Заполнение данных о рекламодателе</b> по маркировке рекламы.</li>
+      <li><b>Наполнение историй</b> с добавлением utm-меток в карточке компании Заказчика.</li>
+      <li><b>Отправка рекламных материалов на модерацию.</b> В случае отрицательного ответа — замена рекламных материалов.</li>
+      <li><b>Пополнение баланса рекламной кампании в Яндекс Картах.</b> Запуск.</li>
+      <li><b>Добавление кнопки действия</b> с добавлением utm-меток.</li>
+    </ol>
+
+    <h3 class="sub rv">Что будет проделано уже в процессе оптимизации</h3>
+    <ul class="marked rv">
+      <li>Доступ заказчика к кабинету системы контекстной рекламы.</li>
+      <li>Ежедневный мониторинг рекламной кампании: контроль ставок и расхода бюджета, корректировка стратегии показа, цены клика и конверсии.</li>
+      <li>Анализ статистики и докрутка на основе полученных данных: расширение списка минус-слов, предотвращение показа объявлений с нецелевыми переходами, отключение неэффективных площадок, доработка площадок и текстов объявлений.</li>
+      <li>Работа на достижение плановых KPI, поставленных заказчиком: объем кликов, бюджет, количество лидов, максимально допустимая стоимость лида.</li>
+      <li>Анализ стратегии работы рекламной кампании, корректировка или разработка новой — по необходимости.</li>
+      <li>Персональный аккаунт-менеджер.</li>
+      <li>Еженедельный отчет о результатах работы — на почту.</li>
+      <li>Еженедельные встречи-регулярки с клиентом.</li>
     </ul>
-    <div class="check-bar rv">
-      <div class="track"><i id="checkFill"></i></div>
-      <small id="checkCount">0 / 8</small>
-      <button type="button" id="checkReset">Сбросить</button>
-    </div>
-    <p class="stamp" id="stamp">Готово к запуску ◆ 8 / 8</p>
-    <div class="note ink rv" style="margin-top:38px"><b>Главное</b><p>сначала упаковка и 9 постов, потом реклама. Сначала скрипт администратора и Altegio, потом заявки. Иначе бюджет сгорит.</p></div>
+
+    <div class="note gold rv"><b>Итог</b><p>разработка — разовый фронт работ, оптимизация — постоянный процесс. Отчет и регулярки — каждую неделю, доступ к кабинету — с первого дня.</p></div>
   </div>
 </section>
 </main>
@@ -484,14 +541,14 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
 <!-- ================= ФУТЕР ================= -->
 <footer>
   <div class="wrap">
-    <p class="brand">MELI<b>O</b>RA</p>
+    <p class="brand">MELIORA</p>
     <p class="sub">Beauty &amp; Spa · Medical</p>
     <p class="acc">@meliora_almaty&nbsp;&nbsp;◆&nbsp;&nbsp;@meliora_medical_almaty</p>
     <div class="meta">
       <div>Дата<strong>Август 2026</strong></div>
       <div>Город<strong>Алматы · GMT+5</strong></div>
       <div>Валюта<strong>KZT · тенге</strong></div>
-      <div>Разделы<strong>08 · части А–Е</strong></div>
+      <div>Разделы<strong>09 · два трека</strong></div>
     </div>
     <div class="rule"><i></i><b></b><i></i></div>
     <div class="fin">
@@ -560,34 +617,6 @@ footer .fin{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;f
       if (fixed >= target.length) clearInterval(iv);
     }, 28);
   }
-
-  /* чек-лист с сохранением */
-  var KEY = "meliora_check_html_v1", items = document.querySelectorAll("#check li");
-  var fill = document.getElementById("checkFill"), count = document.getElementById("checkCount"),
-      stamp = document.getElementById("stamp"), reset = document.getElementById("checkReset");
-  var state = [];
-  try { state = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch(e){ state = []; }
-  function render(){
-    var done = 0;
-    items.forEach(function(li){
-      var i = +li.getAttribute("data-i"), on = !!state[i];
-      li.classList.toggle("done", on);
-      if (on) done++;
-    });
-    fill.style.width = (done / items.length * 100) + "%";
-    count.textContent = done + " / " + items.length;
-    stamp.classList.toggle("show", done === items.length);
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
-  }
-  items.forEach(function(li){
-    li.addEventListener("click", function(){
-      var i = +li.getAttribute("data-i");
-      state[i] = !state[i];
-      render();
-    });
-  });
-  reset.addEventListener("click", function(){ state = []; render(); });
-  render();
 })();
 </script>
 </body>

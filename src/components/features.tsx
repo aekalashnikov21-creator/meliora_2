@@ -1,12 +1,11 @@
 import { useState } from "react";
 import {
   CAMPAIGNS,
-  CHECKLIST_ITEMS,
   KPI_ROWS,
   LEVELS,
   TOTAL_BUDGET,
+  TRACKS,
 } from "../lib/data";
-import { useLocalStorageState } from "../lib/hooks";
 import { Diamond, Reveal } from "./ui";
 
 /* ---------- 01 · матрешка из трех уровней ---------- */
@@ -209,111 +208,76 @@ export function KpiBoard() {
   );
 }
 
-/* ---------- 08 · интерактивный чек-лист ---------- */
-const CHECK_KEY = "meliora-checklist-v1";
-
-export function Checklist() {
-  const [checked, setChecked] = useLocalStorageState<boolean[]>(
-    CHECK_KEY,
-    CHECKLIST_ITEMS.map(() => false)
-  );
-  const done = CHECKLIST_ITEMS.map((_, i) => !!checked[i]);
-  const count = done.filter(Boolean).length;
-  const allDone = count === CHECKLIST_ITEMS.length;
-
-  const toggle = (i: number) =>
-    setChecked((prev) => {
-      const next = CHECKLIST_ITEMS.map((_, j) => !!prev[j]);
-      next[i] = !next[i];
-      return next;
-    });
-
+/* ---------- 00 · план действий: два трека ---------- */
+export function LaunchPlan() {
   return (
-    <Reveal className="my-8">
-      <div className="border border-hairline bg-paper-bright shadow-[0_24px_60px_-40px_rgba(31,27,22,0.5)]">
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-hairline px-5 py-4 sm:px-7">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-gold">
-              Отмечайте по мере выполнения
-            </p>
-            <p className="mt-1 font-display text-xl font-semibold text-ink">
-              Выполнено {count} из {CHECKLIST_ITEMS.length}
-            </p>
-          </div>
-          {count > 0 ? (
-            <button
-              type="button"
-              onClick={() => setChecked(CHECKLIST_ITEMS.map(() => false))}
-              className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted underline decoration-gold/50 underline-offset-4 transition-colors hover:text-gold"
-            >
-              Сбросить
-            </button>
-          ) : null}
-        </div>
-
-        <div className="h-[3px] bg-hairline/60">
+    <Reveal className="my-10">
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+        {TRACKS.map((track, ti) => (
           <div
-            className="h-full bg-gold transition-all duration-500 ease-out"
-            style={{ width: `${(count / CHECKLIST_ITEMS.length) * 100}%` }}
-          />
-        </div>
-
-        <ul className="px-2 sm:px-4">
-          {CHECKLIST_ITEMS.map((item, i) => (
-            <li key={i} className={i > 0 ? "border-t border-hairline" : ""}>
-              <button
-                type="button"
-                onClick={() => toggle(i)}
-                aria-pressed={done[i]}
-                className="group flex w-full items-start gap-4 px-3 py-4 text-left transition-colors duration-200 hover:bg-cream/70 sm:gap-5 sm:px-4"
-              >
-                <span className="pt-1 font-mono text-[11px] font-semibold text-gold/70">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span
-                  className={`${done[i] ? "checked" : ""} mt-0.5 flex h-[22px] w-[22px] shrink-0 items-center justify-center border transition-colors duration-300 ${
-                    done[i]
-                      ? "border-gold bg-gold"
-                      : "border-gold/45 group-hover:border-gold"
-                  }`}
-                >
-                  <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" aria-hidden="true">
-                    <path
-                      className="check-path"
-                      d="M4 10.5 L8.2 14.5 L16 6"
-                      fill="none"
-                      stroke="#faf6ec"
-                      strokeWidth="2.4"
-                      strokeLinecap="square"
-                    />
-                  </svg>
-                </span>
-                <span
-                  className={`text-[15px] leading-relaxed transition-colors duration-300 ${
-                    done[i]
-                      ? "text-muted line-through decoration-gold/50"
-                      : "text-ink/85"
-                  }`}
-                >
-                  {item}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex min-h-[4.5rem] items-center justify-end border-t border-hairline px-6 py-4">
-          {allDone ? (
-            <p className="stamp-in inline-block border-[3px] border-gold px-5 py-2 font-mono text-xs font-bold uppercase tracking-[0.28em] text-gold">
-              Готово к запуску ◆ 8 / 8
+            key={track.name}
+            className="group/track relative border border-hairline bg-paper-bright p-6 transition-all duration-500 hover:border-gold/60 hover:shadow-[0_28px_70px_-44px_rgba(139,111,71,0.65)] sm:p-8"
+            style={{ transitionDelay: `${ti * 90}ms` }}
+          >
+            <span className="absolute right-5 top-5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-gold/50 transition-colors duration-300 group-hover/track:text-gold">
+              {String(ti + 1).padStart(2, "0")} / 02
+            </span>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-gold">
+              {track.name}
             </p>
-          ) : (
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/70">
-              прогресс сохраняется в браузере
+            <p className="mt-2 font-display text-2xl font-semibold text-ink">
+              {track.sub}
             </p>
-          )}
-        </div>
+
+            <ol className="relative mt-8 space-y-7 before:absolute before:bottom-2 before:left-[5px] before:top-2 before:w-px before:bg-hairline">
+              {track.phases.map((p) => (
+                <li key={p.badge} className="relative pl-9">
+                  <span className="absolute left-0 top-1.5 h-[11px] w-[11px] rotate-45 border-[1.5px] border-gold bg-paper transition-all duration-300 group-hover/track:bg-gold/25" />
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="border border-gold/40 bg-cream px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-gold">
+                      {p.badge}
+                    </span>
+                    <span className="text-[15px] font-extrabold text-ink">
+                      {p.title}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                    {p.text}
+                  </p>
+                  {p.ref ? (
+                    <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted/80">
+                      → {p.ref}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
       </div>
     </Reveal>
   );
 }
+
+/* ---------- маркерный список (оптимизация ГЕО) ---------- */
+export function MarkedList({ items }: { items: string[] }) {
+  return (
+    <Reveal className="my-8">
+      <ul className="border border-hairline bg-paper-bright">
+        {items.map((item, i) => (
+          <li
+            key={i}
+            className={`group/item flex items-start gap-4 px-5 py-4 transition-colors duration-300 hover:bg-cream/80 sm:px-6 ${
+              i > 0 ? "border-t border-hairline" : ""
+            }`}
+          >
+            <Diamond className="mt-[7px] h-2 w-2 shrink-0 text-gold/60 transition-colors duration-300 group-hover/item:text-gold" />
+            <p className="text-[14.5px] leading-relaxed text-ink/85">{item}</p>
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+  );
+}
+
+
